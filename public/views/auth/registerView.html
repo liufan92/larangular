@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Register</div>
+                <div class="panel-body">
+                    <form class="form-horizontal col-md-8 col-md-offset-2" name="registerForm" role="form" novalidate>
+
+                        <div class="form-group" ng-class="{ 'has-error' : registerForm.name.$touched && registerForm.name.$invalid && !registerForm.name.$pristine }">
+                            <label>Name</label>
+                            <div>
+                                <input type="text" name="name" class="form-control" ng-model="auth.name" required autofocus>
+                                <p ng-show="registerForm.name.$touched && registerForm.name.$invalid && !registerForm.name.$pristine" class="help-block">You name is required.</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error' : registerForm.dob.$touched && registerForm.dob.$invalid && !registerForm.dob.$pristine }">
+                            <label>D.O.B</label>
+                            <div>
+                                <input type="date" name="dob" class="form-control" ng-model="auth.dob" required>
+                                <p ng-show="registerForm.dob.$touched && registerForm.dob.$invalid && !registerForm.dob.$pristine" class="help-block">You dob is required.</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error' : registerForm.email.$touched && registerForm.email.$invalid && !registerForm.email.$pristine }">
+                            <label>E-Mail Address</label>
+                            <div>
+                                <input type="email" name="email" class="form-control" ng-model="auth.email" required>
+                                <p ng-show="registerForm.email.$touched && registerForm.email.$invalid && !registerForm.email.$pristine" class="help-block">Enter a valid email</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error' : registerForm.password.$touched && registerForm.password.$invalid && !registerForm.password.$pristine }">
+                            <label>Password</label>
+                            <div>
+                                <input id="password" type="password" name="password" class="form-control" ng-model="auth.password" ng-minlength="6" required>
+                                <p ng-show="registerForm.password.$touched && registerForm.password.$invalid && !registerForm.passwrod.$pristine" class="help-block">Password must be at least 6 characters long.</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error' : registerForm.password_confirmation.$error.match && registerForm.password_confirmation.$touched && !registerForm.password_confirmation.$pristine }">
+                            <label>Confirm Password</label>
+                            <div>
+                                <input type="password" class="form-control" name="password_confirmation" ng-model="auth.password_confirmation" match="auth.password" required>
+                                <p ng-show="registerForm.password_confirmation.$error.match && registerForm.password_confirmation.$touched && !registerForm.password_confirmation.$pristine" class="help-block">Password fields do not match!</p>
+                            </div>
+                        </div>
+
+                        <p class="bg-danger" ng-show="auth.error">{{auth.errorMessage}}</p>
+
+                        <div class="form-group">
+                            <div>
+                                <button type="submit" class="btn btn-primary" ng-click="auth.register()" ng-disabled="registerForm.$invalid">
+                                    Register
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- end of panel -->
+        </div><!-- end of col -->
+    </div><!-- end of row -->
+</div><!-- end of container -->

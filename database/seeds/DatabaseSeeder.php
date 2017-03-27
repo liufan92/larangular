@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
+        /*Model::unguard();
 
         DB::table('users')->delete();
 
@@ -32,6 +32,10 @@ class DatabaseSeeder extends Seeder
             User::create($user);
         }
 
-        Model::reguard();
+        Model::reguard();*/
+
+        factory(App\User::class, 10)->create();
+        factory(App\Article::class, 100)->create();
+        factory(App\Comment::class, 300)->create();
     }
 }

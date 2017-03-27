@@ -22,3 +22,20 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Article::class, function (Faker\Generator $faker) {
+
+    return [
+    	'user_id' => App\User::all()->random()->id,
+    	'content' => $faker->paragraph(5), //Generate paragraph with 5 sentences   
+    ];
+});
+
+$factory->define(App\Comment::class, function (Faker\Generator $faker) {
+
+    return [
+        'user_id' => App\User::all()->random()->id,
+        'article_id' => App\Article::all()->random()->id,
+        'text' => $faker->paragraph(1),
+    ];
+});

@@ -11,11 +11,18 @@
 |
 */
 
+// HOME PAGE ===================================  
 Route::get('/', function () {
     return view('index');
 });
 
+// API ROUTES ==================================  
 Route::group(['prefix' => 'api'], function(){
 	Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
 	Route::post('authenticate', 'AuthenticateController@authenticate');
+	Route::post('register', 'AuthenticateController@create');
+	Route::resource('articles', 'ArticleController', array('only'=> array('index', 'store', 'update', 'destroy')));
+	Route::resource('comments', 'CommentController', array('only'=> array('index', 'store', 'destroy')));
 });
+
+

@@ -1,0 +1,105 @@
+<!-- PAGE TITLE =============================================== -->
+    <section class="row new-post">
+        <div class="col-md-6 col-md-offset-3">
+            <div ng-include="'/views/articleCreate.tpl.html'"></div>
+        </div>
+    </section>
+    <section class="row posts">
+        <div class="col-md-6 col-md-offset-3">
+            <header><h3>What other people say...</h3></header>
+                <article ng-repeat="article in feed.articles">
+                    <div class="post" data-id="{{article.id}}">
+                        <p>{{article.content}}</p>
+                        <div class="info">
+                            Posted by [Author name here] [timestamp here]
+                        </div>
+                        <div class="interaction">                   
+                                <a class="like" href="#"><i class="fa fa-thumbs-o-up" aria-hideen="true"> Like</i></a> |
+                                <a class="toggleComment" href="#"><i class="fa fa-comment-o" aria-hideen="true"> Comment</i></a> 
+                                
+                                <a class='editPost' data-toggle="modal" data-target="#edit-modal" href="#">| <i class="fa fa-pencil-square-o" aria-hideen="true"> Edit</i></a>
+                                <form action="" method="POST" class="pull-right">
+                                    <button class="btn btn-sm">
+                                        <i class="fa fa-trash-o" aria-hideen="true"> Delete</i>
+                                    </button>
+                                </form>
+                        </div>
+                    </div>
+                    
+                    <!--  Comment section  -->
+                    <aside class="comment">
+                        <form method="POST" action="">
+                            <input type="hidden" name="user_id" value="">
+                            <input type="hidden" name="article_id" value="">
+                            <input type="text" name="text" size="50" class="commentInput" placeholder="Say Something...">
+                            <button class="btn btn-primary btn-sm postComment">Send</button>
+                        </form>
+                        <p>Comments of article here</i> <span class="pull-right">Timestap Here</span></p>
+                    </aside>
+                </article>
+                <!--  End of Comment  -->
+        </div>
+
+    </section>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="edit-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Edit Post</h4>
+                </div>
+                    <div class="modal-body">
+                        <form id="editPostForm" action="" method="POST">
+                            <label for="content">Author name here</label>
+                            <textarea name="content" class="form-control" id="editPostBody" rows="5"></textarea>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" form="editPostForm" class="btn btn-primary">Save changes</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+
+    <hr>
+    <div class="page-header">
+        <h2>Laravel and Angular Single Page Application</h2>
+        <h4>Commenting System</h4>
+    </div>
+    
+    <!-- NEW COMMENT FORM =============================================== -->
+    <form ng-submit="submitComment()"> <!-- ng-submit will disable the default form action and use our function -->
+    
+        <!-- AUTHOR -->
+        <div class="form-group">
+            <input type="text" class="form-control input-sm" name="author" ng-model="commentData.author" placeholder="Name">
+        </div>
+    
+        <!-- COMMENT TEXT -->
+        <div class="form-group">
+            <input type="text" class="form-control input-lg" name="comment" ng-model="commentData.text" placeholder="Say what you have to say">
+        </div>
+    
+        <!-- SUBMIT BUTTON -->
+        <div class="form-group text-right">   
+            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+        </div>
+    </form>
+    
+    <!-- LOADING ICON =============================================== -->
+    <!-- show loading icon if the loading variable is set to true -->
+    <p class="text-center" ng-show="loading"><span class="fa fa-meh-o fa-5x fa-spin"></span></p>
+    
+    <!-- THE COMMENTS =============================================== -->
+    <!-- hide these comments if the loading variable is true -->
+    <div class="comment" ng-hide="loading" ng-repeat="comment in feed.comments">
+        <h3>Comment #{{ comment.id }} <small>by {{ comment.user_id }}</h3>
+        <p>{{ comment.text }}</p>
+    
+        <p><a href="#" ng-click="deleteComment(comment.id)" class="text-muted">Delete</a></p>
+    </div>
