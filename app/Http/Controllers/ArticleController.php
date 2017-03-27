@@ -11,7 +11,7 @@ class ArticleController extends Controller
     public function index()
     {
     	//$articles = Article::latest('created_at')->paginate(10);
-    	$articles = Article::latest('created_at')->paginate(10);
+    	$articles = Article::with('comments')->with('likes')->latest('created_at')->paginate(10);
     	return response()->json($articles);
     }
 

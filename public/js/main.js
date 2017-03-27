@@ -1,8 +1,14 @@
-$(document).ready(function(){
-	var postId = 0;
-	$(".toggleComment").on('click', function(event){
+$(function(){
+
+	/*$(".toggleComment").on('click', function(event){
 		event.preventDefault();
 		$(this).parent().parent().siblings('aside').toggle(500);
+	});*/
+
+	$(document).on("click", ".toggleComment", function(){
+		console.log(this);
+		$(this).parent().parent().siblings('aside').toggle(500);
+
 	});
 
 	$(".editPost").on('click', function(event){

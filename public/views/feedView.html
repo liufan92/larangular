@@ -15,7 +15,7 @@
                         </div>
                         <div class="interaction">                   
                                 <a class="like" href="#"><i class="fa fa-thumbs-o-up" aria-hideen="true"> Like</i></a> |
-                                <a class="toggleComment" href="#"><i class="fa fa-comment-o" aria-hideen="true"> Comment</i></a> 
+                                <a class="toggleComment" href="javascript:void(0)"><i class="fa fa-comment-o" aria-hideen="true"> Comment</i></a> 
                                 
                                 <a class='editPost' data-toggle="modal" data-target="#edit-modal" href="#">| <i class="fa fa-pencil-square-o" aria-hideen="true"> Edit</i></a>
                                 <form action="" method="POST" class="pull-right">
@@ -34,7 +34,9 @@
                             <input type="text" name="text" size="50" class="commentInput" placeholder="Say Something...">
                             <button class="btn btn-primary btn-sm postComment">Send</button>
                         </form>
-                        <p>Comments of article here</i> <span class="pull-right">Timestap Here</span></p>
+                        <div ng-repeat="comment in article.comments">
+                            <p>{{comment.text}}</i> <span class="pull-right">{{comment.created_at}}</span></p>
+                        </div>  
                     </aside>
                 </article>
                 <!--  End of Comment  -->

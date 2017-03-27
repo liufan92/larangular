@@ -25,7 +25,7 @@ angular.module('mainCtrl', [])
 
     Article.get()
         .then(function(data) {
-            //console.log(data);
+            console.log(data);
             vm.articles = data.data.data;
             
             vm.loading = false;

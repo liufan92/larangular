@@ -35,6 +35,7 @@ $factory->define(App\Comment::class, function (Faker\Generator $faker) {
 
     return [
         'user_id' => App\User::all()->random()->id,
+        'user_name' => App\User::all()->random()->name,
         'article_id' => App\Article::all()->random()->id,
         'text' => $faker->paragraph(1),
     ];
