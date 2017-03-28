@@ -24,9 +24,9 @@
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
-                <li ng-if="!auth.isAuthenticated()"><a ui-sref="login">Login</a></li>
-                <li ng-if="!auth.isAuthenticated()"><a ui-sref="register">Register</a></li>
-                <li class="dropdown" ng-if="auth.isAuthenticated()">
+                <li ng-if="!toolbar.isAuthenticated()"><a ui-sref="login">Login</a></li>
+                <li ng-if="!toolbar.isAuthenticated()"><a ui-sref="register">Register</a></li>
+                <li class="dropdown" ng-if="toolbar.isAuthenticated()">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         User Name <span class="caret"></span>
                     </a>
@@ -48,7 +48,7 @@
                         </li>
                         <hr>
                         <li>
-                            <a href="#" ng-click="auth.logout()">Logout</a>
+                            <a href="#" ng-click="toolbar.logout()">Logout</a>
                         </li>
                     </ul>
                 </li>

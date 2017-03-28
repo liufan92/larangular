@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('authApp', ['ui.router', 'satellizer', 'mainCtrl', 'commentService', 'articleService', 'validation.match'])
+        .module('authApp', ['ui.router', 'satellizer', 'mainCtrl', 'commentService', 'articleService', 'validation.match', 'angular-storage'])
         .config(function($stateProvider, $urlRouterProvider, $authProvider) {
 
             // Satellizer configuration that specifies which API
@@ -19,15 +19,17 @@
                 .state('login', {
                     url: '/login',
                     templateUrl: 'views/auth/loginView.html',
+                    controller: 'authController as auth'
                 })
                 .state('register', {
                     url: '/register',
                     templateUrl: 'views/auth/registerView.html',
+                    controller: 'authController as auth'
                 })
                 .state('users', {
                     url: '/users',
                     templateUrl: 'views/userView.html',
-                    controller: 'UserController as user'
+                    controller: 'userController as user'
                 })
                 .state('feed', {
                     url: '/feed',

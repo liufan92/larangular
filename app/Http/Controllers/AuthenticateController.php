@@ -24,6 +24,7 @@ class AuthenticateController extends Controller
     	return $users;
     }
 
+    //Login method ===============================================================================
     public function authenticate(Request $request){
     	$credentials = $request->only('email', 'password');
 
@@ -37,30 +38,47 @@ class AuthenticateController extends Controller
             return response()->json(['error' => 'could_not_create_token'], 500);
     	}
 
+        $user_info = User::where('email', $request['email'])->first(['email','name']);
+
+
     	// if no errors are encountered we can return a JWT
-        return response()->json(compact('token'));
+        return response()->json([
+            'token' => $token,
+            'user_info' => $user_info
+        ]);
+        //return response()->json(compact('token'));
 
     }
 
+    //Signup method ===============================================================================
     public function create(Request $request){
         $this->validate($request, [
             'name' => 'required|max:255',
-            'dob' => 'required',
+            'dob' => 'required|date',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => bcrypt($request['password']),
             'dob' => $request['dob'],
         ]);
 
-        $credentials = $request->only('email', 'password');
-        $token = JWTAuth::attempt($credentials);
+        $user_info = User::where('email', $request['email'])->first(['email','name']);
 
-        return response()->json(compact('token'));
+        if($user){
+            $credentials = $request->only('email', 'password');
+            $token = JWTAuth::attempt($credentials);
+
+            return response()->json([
+                'token' => $token,
+                'user_info' => $user_info
+            ]);
+            //return response()->json(compact('token'));
+        };
+        
 
     }
 

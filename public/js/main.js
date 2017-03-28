@@ -6,9 +6,7 @@ $(function(){
 	});*/
 
 	$(document).on("click", ".toggleComment", function(){
-		console.log(this);
 		$(this).parent().parent().siblings('aside').toggle(500);
-
 	});
 
 	$(".editPost").on('click', function(event){

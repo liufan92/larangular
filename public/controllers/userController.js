@@ -4,7 +4,7 @@
 
     angular
         .module('authApp')
-        .controller('UserController', UserController);  
+        .controller('userController', UserController);  
 
     function UserController($http) {
 

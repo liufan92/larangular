@@ -21,11 +21,13 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/satellizer/dist/satellizer.js"></script>
     <script src="bower_components/angular-validation-match/dist/angular-validation-match.js"></script>
+    <script src="bower_components/a0-angular-storage/dist/angular-storage.js"></script>
 
     <!-- Application Scripts -->
     <script src="app.js"></script>
     <script src="js/main.js"></script>
     <script src="controllers/userController.js"></script>
+    <script src="controllers/authController.js"></script>
     <script src="directives/toolbar.dir.js"></script>
     <script src="controllers/mainController.js"></script> <!-- load our controller -->
     <script src="services/commentService.js"></script> <!-- load our service -->
